@@ -1,18 +1,23 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 import requests
+import os
 
 router = APIRouter()
 
-SPOONACULAR_API_KEY = "YOUR_API_KEY"
+SPOONACULAR_API_KEY = os.getenv("SPOONACULAR_API_KEY")
 
-@router.get("/recipes")
-def get_recipes(diet: str = "gluten-free", maxCalories: int = 600):
-    url = "https://api.spoonacular.com/recipes/complexSearch"
+
+@router.get("/api/recipes")
+def get_recipes(ingredients: str = Query(..., min_length=1)):
+    url = "https://api.spoonacular.com/recipes/findByIngredients"
     params = {
         "apiKey": SPOONACULAR_API_KEY,
-        "diet": diet,
-        "maxCalories": maxCalories,
-        "number": 5
+        "ingredients": ingredients,
+        "number": 5  # Number of results to return
     }
+
     response = requests.get(url, params=params)
+    if response.status_code != 200:
+        return {"error": "Failed to fetch recipes"}
+
     return response.json()

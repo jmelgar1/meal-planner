@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { fetchRecipes } from './api';
 
 function App() {
+  const [ingredients, setIngredients] = useState<string>('');
+  const [recipes, setRecipes] = useState<any[]>([]);
+
+  const handleSearch = async () => {
+    if (!ingredients.trim()) return;
+    const data = await fetchRecipes(ingredients);
+    setRecipes(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <h1>Meal Finder</h1>
+        <input
+            type="text"
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+            placeholder="Enter ingredients (e.g., chicken, tomato)"
+        />
+        <button onClick={handleSearch}>Search Recipes</button>
+
+        <div>
+          {recipes.length > 0 ? (
+              <ul>
+                {recipes.map((recipe) => (
+                    <li key={recipe.id}>
+                      <h3>{recipe.title}</h3>
+                      <img src={recipe.image} alt={recipe.title} width="100" />
+                    </li>
+                ))}
+              </ul>
+          ) : (
+              <p>No recipes found. Try different ingredients.</p>
+          )}
+        </div>
+      </div>
   );
 }
 
