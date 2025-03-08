@@ -1,6 +1,10 @@
 from fastapi import APIRouter, Query
 import requests
 import os
+from dotenv import load_dotenv
+
+# Load .env file
+load_dotenv()
 
 router = APIRouter()
 

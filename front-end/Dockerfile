@@ -1,19 +1,15 @@
 FROM node:18
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and yarn.lock (before copying everything)
+# Copy package.json and yarn.lock first for caching
 COPY package.json yarn.lock ./
 
 # Install dependencies
 RUN yarn install
 
-# Copy the rest of the app's files
+# Copy the remaining files
 COPY . .
 
-# Expose port 3000 for React
 EXPOSE 3000
-
-# Start the React app
 CMD ["yarn", "start"]

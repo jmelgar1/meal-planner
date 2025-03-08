@@ -7,7 +7,6 @@ services:
       - "3000:3000"
     volumes:
       - ./front-end:/app
-      - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true  # Ensures React hot-reload works in Docker
     depends_on:
@@ -21,6 +20,8 @@ services:
       - ./back-end:/app
     environment:
       - MONGO_URL=mongodb://mongodb:27017
+    env_file:
+      - ./back-end/.env
     depends_on:
       - mongodb
 
