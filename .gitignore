@@ -1,9 +1,12 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+#Front-end
 front-end/node_modules
+front-end/.idea
+
+#Back-end
 back-end/.venv
 back-end/.env
-front-end/.idea
 back-end/__pycache__
 *.log
 
