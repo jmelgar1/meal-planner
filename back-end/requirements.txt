@@ -1,4 +1,6 @@
-fastapi
+fastapi~=0.115.11
 uvicorn
-python-dotenv
-requests
+python-dotenv~=1.0.1
+requests~=2.32.3
+pydantic~=2.10.6
+dotenv~=0.9.9

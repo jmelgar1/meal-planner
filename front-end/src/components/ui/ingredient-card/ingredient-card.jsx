@@ -15,8 +15,16 @@ function IngredientCard({ ingredient, onSelect, isSelected }) {
             {/* Ingredient Details */}
             <div className="details">
                 <h2>{ingredient.name}</h2>
-                <p>Serving Size: {ingredient.servingSize || 'N/A'}</p>
-                <p>Calories: {ingredient.calories || 'N/A'}</p>
+                <div className="nutrition">
+                    <p>Serving Size: {ingredient.servingSize || 'N/A'}</p>
+                    <p>Calories: {ingredient.calories || 'N/A'}</p>
+                </div>
+            </div>
+
+            <div className="macros">
+                <p>Carbohydrates: {ingredient.carbs || 'N/A'}</p>
+                <p>Protein: {ingredient.protein || 'N/A'}</p>
+                <p>Fats: {ingredient.fats || 'N/A'}</p>
             </div>
 
             {/* Icon on the Right */}

@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from routes import recipe
+from app.routes import recipe, ingredient
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # React's local dev URL
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -14,11 +14,8 @@ app.add_middleware(
 
 # Register routes
 app.include_router(recipe.router)
+app.include_router(ingredient.router)
 
-@app.get("/")
+@app.get("/", tags=["Root"])
 def root():
     return {"message": "Hello from FastAPI!"}
-
-@app.get("/api/data")
-def get_data():
-    return {"data": ["Apples", "Bananas", "Carrots"]}
