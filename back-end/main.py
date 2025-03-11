@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import recipe, ingredient
+from app.routes import ingredient
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -13,7 +13,6 @@ app.add_middleware(
 )
 
 # Register routes
-app.include_router(recipe.router)
 app.include_router(ingredient.router)
 
 @app.get("/", tags=["Root"])
