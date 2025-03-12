@@ -4,30 +4,29 @@ import vegetableIcon from '../../../images/vegtable-icon.png'; // Adjust the pat
 
 function IngredientCard({ ingredient, onSelect, isSelected }) {
     return (
-        <div
-            className={`ingredient-card ${isSelected ? 'selected' : ''}`}
-            onClick={() => onSelect(ingredient)}
-        >
+        <div className={`ingredient-card ${isSelected ? 'selected' : ''}`} onClick={() => onSelect(ingredient)}>
+            {/* Use actual image from API if available */}
+            <div className="image-placeholder">
+                {ingredient.image && (
+                    <img src={ingredient.image} alt={ingredient.food_name} className="ingredient-image" />
+                )}
+            </div>
 
-            {/* Image Placeholder */}
-            <div className="image-placeholder"></div>
-
-            {/* Ingredient Details */}
             <div className="details">
-                <h2>{ingredient.name}</h2>
+                <h2>{ingredient.food_name}</h2>
                 <div className="nutrition">
-                    <p>Serving Size: {ingredient.servingSize || 'N/A'}</p>
-                    <p>Calories: {ingredient.calories || 'N/A'}</p>
+                    <p>Serving: {ingredient.serving_qty} {ingredient.serving_unit}</p>
+                    <p>Weight: {ingredient.serving_weight_grams}g</p>
                 </div>
             </div>
 
             <div className="macros">
-                <p>Carbohydrates: {ingredient.carbs || 'N/A'}</p>
-                <p>Protein: {ingredient.protein || 'N/A'}</p>
-                <p>Fats: {ingredient.fats || 'N/A'}</p>
+                <p>Calories: {ingredient.nutrition?.calories || 'N/A'}</p>
+                <p>Carbs: {ingredient.nutrition?.carbs || 'N/A'}g</p>
+                <p>Protein: {ingredient.nutrition?.protein || 'N/A'}g</p>
+                <p>Fat: {ingredient.nutrition?.fat || 'N/A'}g</p>
             </div>
 
-            {/* Icon on the Right */}
             <div className="icon">
                 <img src={vegetableIcon} alt="icon" className="w-full h-full" />
             </div>

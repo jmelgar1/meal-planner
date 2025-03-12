@@ -1,15 +1,16 @@
 FROM node:18
 
+# Install timezone data
+RUN apt-get update && \
+    apt-get install -y tzdata && \
+    rm -rf /var/lib/apt/lists/*
+
+ENV TZ=UTC
+
 WORKDIR /app
-
-# Copy package.json and yarn.lock first for caching
-COPY package.json yarn.lock ./
-
-# Install dependencies
-RUN yarn install
-
-# Copy the remaining files
+COPY package.json package-lock.json* ./
+RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["npm", "start"]

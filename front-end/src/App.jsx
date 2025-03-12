@@ -9,6 +9,8 @@ function App() {
         setInput,
         filteredIngredients,
         selectedIngredients,
+        isLoading,
+        error,
         addIngredient,
         removeIngredient
     } = useIngredients();
@@ -21,6 +23,8 @@ function App() {
                 filteredIngredients={filteredIngredients}
                 addIngredient={addIngredient}
                 selectedIngredients={selectedIngredients}
+                isLoading={isLoading}
+                error={error}
             />
 
             <SelectedIngredients
@@ -28,6 +32,7 @@ function App() {
                 removeIngredient={removeIngredient}
             />
 
+            {/* Keep recipe panel for future implementation */}
             <div className="w-1/3">
                 <h2 className="font-bold mb-2">Recipe Results</h2>
                 <p>Recipes will appear here after clicking 'Find Recipes'.</p>
