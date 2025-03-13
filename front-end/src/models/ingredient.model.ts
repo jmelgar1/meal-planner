@@ -23,6 +23,7 @@ export class Ingredient {
     serving_unit: string;
     serving_weight_grams: number;
     nutrition: NutritionInfo;
+    food_group: number;
     image?: string;
 
     constructor(data: {
@@ -31,6 +32,7 @@ export class Ingredient {
         serving_unit: string,
         serving_weight_grams: number,
         nutrition: NutritionInfo,
+        food_group: number,
         image?: string
     }) {
         this.food_name = data.food_name;
@@ -38,6 +40,7 @@ export class Ingredient {
         this.serving_unit = data.serving_unit;
         this.serving_weight_grams = data.serving_weight_grams;
         this.nutrition = new NutritionInfo(data.nutrition);
+        this.food_group = data.food_group;
         this.image = data.image;
     }
 
@@ -54,6 +57,7 @@ export class Ingredient {
                 carbs: json.nutrition.carbs,
                 protein: json.nutrition.protein
             },
+            food_group: json.food_group || 8,
             image: json.image
         });
     }

@@ -33,7 +33,19 @@
     gap: var(--spacing-sm);
 }
 
-.title::before {
-    content: '🍳';
+.title[data-icon="search"]::before {
+    content: '🔍';
+}
+
+.title[data-icon="selected"]::before {
+    content: '📋';
+}
+
+.title[data-icon="recipes"]::before {
+    content: '🥗';
+}
+
+.title[data-icon]::before {
     font-size: 1.2em;
+    margin-right: var(--spacing-sm);
 }

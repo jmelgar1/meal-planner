@@ -19,7 +19,7 @@ function App() {
     return (
         <div className={styles.layout}>
             <div className={styles.panel}>
-                <h2 className={styles.title}>Search Ingredients</h2>
+                <h2 className={styles.title} data-icon={"search"}>Search Ingredients</h2>
                 <IngredientInput
                     input={input}
                     setInput={setInput}
@@ -32,7 +32,7 @@ function App() {
             </div>
 
             <div className={styles.panel}>
-                <h2 className={styles.title}>Selected Items</h2>
+                <h2 className={styles.title} data-icon={"selected"}>Selected Items</h2>
                 <SelectedIngredients
                     selectedIngredients={selectedIngredients}
                     removeIngredient={removeIngredient}
@@ -40,9 +40,9 @@ function App() {
             </div>
 
             <div className={styles.recipePanel}>
-                <h2 className={styles.title}>Recipe Suggestions</h2>
+                <h2 className={styles.title} data-icon={"recipes"}>Recipe Suggestions</h2>
                 <div className="text-gray-600">
-                    <p className="mb-4">📋 Selected ingredients will appear here</p>
+                    <p className="mb-4">Selected ingredients will appear here</p>
                     <div className="animate-pulse text-purple-500">
                         Coming soon: AI-powered recipe suggestions!
                     </div>
