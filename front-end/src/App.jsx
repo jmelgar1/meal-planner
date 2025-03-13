@@ -1,6 +1,6 @@
 import React from 'react';
 import { useIngredients } from './hooks/useIngredients';
-import IngredientInput from './components/IngredientInput';
+import IngredientInput from './components/ui/ingredient-input/ingredient-input';
 import SelectedIngredients from './components/SelectedIngredients';
 import styles from './styles/App.module.css';
 

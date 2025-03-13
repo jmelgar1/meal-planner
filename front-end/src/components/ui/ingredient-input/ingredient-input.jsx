@@ -1,5 +1,6 @@
 import React from 'react';
-import IngredientCard from './ui/ingredient-card/ingredient-card';
+import IngredientCard from '../ingredient-card/ingredient-card';
+import './ingredient-input.css';
 
 function IngredientInput({
                              input,
@@ -16,14 +17,14 @@ function IngredientInput({
     };
 
     return (
-        <div className="w-1/3">
+        <div className="w-full">
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Search ingredients (e.g. '200g chicken breast')"
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                    className="search-input"
                     aria-label="Search ingredients"
                 />
             </form>

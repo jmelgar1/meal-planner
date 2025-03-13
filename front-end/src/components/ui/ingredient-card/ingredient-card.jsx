@@ -20,13 +20,13 @@ function IngredientCard({ ingredient, onSelect, isSelected }) {
                     <span className="food-icon">{foodIcon}</span>
                 </div>
                 <div className="nutrition">
+                    <p>Calories: {ingredient.nutrition?.calories || 'N/A'}</p>
                     <p>Serving: {ingredient.serving_qty} {ingredient.serving_unit}</p>
                     <p>Weight: {ingredient.serving_weight_grams}g</p>
                 </div>
             </div>
 
             <div className="macros">
-                <p>Calories: {ingredient.nutrition?.calories || 'N/A'}</p>
                 <p>Carbs: {ingredient.nutrition?.carbs || 'N/A'}g</p>
                 <p>Protein: {ingredient.nutrition?.protein || 'N/A'}g</p>
                 <p>Fat: {ingredient.nutrition?.fat || 'N/A'}g</p>
