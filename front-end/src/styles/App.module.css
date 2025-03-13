@@ -1,0 +1,39 @@
+@import './theme.css';
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--background);
+    padding: var(--spacing-lg);
+    gap: var(--spacing-lg);
+}
+
+.panel {
+    flex: 1;
+    background: white;
+    border-radius: var(--radius);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow);
+    max-width: 400px;
+}
+
+.recipePanel {
+    composes: panel;
+    background: linear-gradient(145deg, var(--light) 0%, white 100%);
+    border: 2px dashed var(--secondary);
+}
+
+.title {
+    color: var(--primary);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.title::before {
+    content: '🍳';
+    font-size: 1.2em;
+}
