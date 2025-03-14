@@ -1,5 +1,7 @@
+// SelectedIngredients.jsx
 import React from 'react';
-import IngredientCard from './ui/ingredient-card/ingredient-card';
+import IngredientCard from '../ingredient-card/IngredientCard';
+import styles from './SelectedIngredients.module.css';
 
 function SelectedIngredients({ selectedIngredients, removeIngredient }) {
     return (
@@ -14,6 +16,7 @@ function SelectedIngredients({ selectedIngredients, removeIngredient }) {
                             ingredient={ingredient}
                             onSelect={removeIngredient}
                             isSelected={true}
+                            className={styles.selectedCard}
                         />
                     ))
                 ) : (

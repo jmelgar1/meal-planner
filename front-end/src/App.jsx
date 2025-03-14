@@ -1,8 +1,9 @@
 import React from 'react';
 import { useIngredients } from './hooks/useIngredients';
-import IngredientInput from './components/ui/ingredient-input/ingredient-input';
-import SelectedIngredients from './components/SelectedIngredients';
+import IngredientInput from './components/ui/ingredient-input/IngredientInput';
+import SelectedIngredients from './components/ui/selected-ingredients/SelectedIngredients';
 import styles from './styles/App.module.css';
+import Button from "./components/ui/button/Button";
 
 function App() {
     const {
@@ -15,6 +16,11 @@ function App() {
         addIngredient,
         removeIngredient
     } = useIngredients();
+
+    const handleCreateMeals = () => {
+        console.log('Creating meals with:', selectedIngredients);
+        // Will implement API call later
+    };
 
     return (
         <div className={styles.layout}>
@@ -33,6 +39,14 @@ function App() {
 
             <div className={styles.panel}>
                 <h2 className={styles.title} data-icon={"selected"}>Selected Items</h2>
+                <Button
+                    variant="primary"
+                    onClick={handleCreateMeals}
+                    disabled={selectedIngredients.length === 0}
+                    //className={styles.fullWidthButton} // custom class soon
+                >
+                    Create Meals!
+                </Button>
                 <SelectedIngredients
                     selectedIngredients={selectedIngredients}
                     removeIngredient={removeIngredient}

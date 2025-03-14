@@ -1,6 +1,6 @@
 import React from 'react';
-import IngredientCard from '../ingredient-card/ingredient-card';
-import './ingredient-input.css';
+import styles from './IngredientInput.module.css';
+import IngredientCard from '../ingredient-card/IngredientCard';
 
 function IngredientInput({
                              input,
@@ -17,35 +17,35 @@ function IngredientInput({
     };
 
     return (
-        <div className="w-full">
+        <div className={styles.container}>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Search ingredients (e.g. '200g chicken breast')"
-                    className="search-input"
+                    className={styles.searchInput}
                     aria-label="Search ingredients"
                 />
             </form>
 
-            <div className="mt-2">
+            <div className={styles.resultsContainer}>
                 {/* Loading State */}
                 {isLoading && (
-                    <div className="p-3 text-gray-600 bg-gray-50 rounded-md">
+                    <div className={styles.loadingState}>
                         ⏳ Searching nutrition data...
                     </div>
                 )}
 
                 {/* Error State */}
                 {error && (
-                    <div className="p-3 text-red-600 bg-red-50 rounded-md border border-red-100">
+                    <div className={styles.errorState}>
                         ⚠️ Error: {error}
                     </div>
                 )}
 
                 {/* Results List */}
-                <div className="grid gap-2">
+                <div className={styles.resultsGrid}>
                     {filteredIngredients.map(ingredient => (
                         <IngredientCard
                             key={`${ingredient.food_name}-${ingredient.serving_qty}`}
@@ -61,7 +61,7 @@ function IngredientInput({
 
                 {/* Empty State */}
                 {!isLoading && !error && filteredIngredients.length === 0 && input.trim() && (
-                    <div className="p-3 text-gray-500 bg-gray-50 rounded-md">
+                    <div className={styles.emptyState}>
                         🍴 No results found for "{input}"
                     </div>
                 )}

@@ -58,3 +58,29 @@
     font-size: 1.2em;
     margin-right: var(--spacing-sm);
 }
+
+/*!* Button Stuff *!*/
+/*.createButton {*/
+/*    width: 100%;*/
+/*    padding: var(--spacing-sm) var(--spacing-md);*/
+/*    margin-top: var(--spacing-md);*/
+/*    background-color: var(--primary);*/
+/*    color: white;*/
+/*    border: none;*/
+/*    border-radius: var(--radius);*/
+/*    font-family: 'Inter', sans-serif;*/
+/*    font-weight: 600;*/
+/*    cursor: pointer;*/
+/*    transition: all 0.2s ease;*/
+/*    box-shadow: var(--shadow);*/
+/*}*/
+
+/*.createButton:hover {*/
+/*    background-color: var(--secondary);*/
+/*    transform: translateY(-2px);*/
+/*}*/
+
+/*.createButton:active {*/
+/*    transform: translateY(0);*/
+/*    box-shadow: 0 2px 4px rgba(109, 40, 217, 0.2);*/
+/*}*/
