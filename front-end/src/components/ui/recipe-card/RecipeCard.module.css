@@ -1,0 +1,84 @@
+.recipeCard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(149, 76, 233, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 1.5rem;
+}
+
+.recipeCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(149, 76, 233, 0.15);
+}
+
+.imageContainer {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.recipeImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 3px solid #8B5CF6;
+}
+
+.content {
+    padding: 1.25rem;
+}
+
+.title {
+    font-size: 1.25rem;
+    color: #4C1D95;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: #6D28D9;
+    font-size: 0.875rem;
+}
+
+.ingredientLists {
+    display: grid;
+    gap: 1rem;
+}
+
+.usedIngredients, .missingIngredients {
+    padding: 0.75rem;
+    border-radius: 8px;
+}
+
+.usedIngredients {
+    background-color: #F5F3FF;
+    border: 1px solid #8B5CF6;
+}
+
+.missingIngredients {
+    background-color: #FEF2F2;
+    border: 1px solid #EF4444;
+}
+
+h4 {
+    color: #4C1D95;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    font-size: 0.875rem;
+    color: #4B5563;
+    padding: 0.25rem 0;
+}

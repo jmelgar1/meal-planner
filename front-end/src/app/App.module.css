@@ -1,4 +1,4 @@
-@import './theme.css';
+@import '../styles/theme.css';
 
 *,
 *::before,
@@ -59,28 +59,42 @@
     margin-right: var(--spacing-sm);
 }
 
-/*!* Button Stuff *!*/
-/*.createButton {*/
-/*    width: 100%;*/
-/*    padding: var(--spacing-sm) var(--spacing-md);*/
-/*    margin-top: var(--spacing-md);*/
-/*    background-color: var(--primary);*/
-/*    color: white;*/
-/*    border: none;*/
-/*    border-radius: var(--radius);*/
-/*    font-family: 'Inter', sans-serif;*/
-/*    font-weight: 600;*/
-/*    cursor: pointer;*/
-/*    transition: all 0.2s ease;*/
-/*    box-shadow: var(--shadow);*/
-/*}*/
+.loadingState {
+    padding: 1rem;
+    background: rgba(168, 85, 247, 0.05);
+    border-radius: 8px;
+    text-align: center;
+    color: #6D28D9;
+}
 
-/*.createButton:hover {*/
-/*    background-color: var(--secondary);*/
-/*    transform: translateY(-2px);*/
-/*}*/
+.errorState {
+    padding: 1rem;
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 8px;
+    color: #DC2626;
+}
 
-/*.createButton:active {*/
-/*    transform: translateY(0);*/
-/*    box-shadow: 0 2px 4px rgba(109, 40, 217, 0.2);*/
-/*}*/
+.emptyState {
+    padding: 1.5rem;
+    text-align: center;
+    color: #8B5CF6;
+    font-style: italic;
+}
+
+.fullWidthButton {
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+.recipeContent {
+    padding: var(--spacing-md);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.recipeGrid {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}

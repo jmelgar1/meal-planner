@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Query
-from app.services.nutritionix_service import get_nutrition_data
-from app.models.ingredient_model import Ingredient
+from app.nutritionix.services.nutritionix_service import get_nutrition_data
+from app.nutritionix.models.ingredient_model import Ingredient
 
 router = APIRouter()
 

@@ -1,7 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
-from app.models.ingredient_model import Ingredient, NutritionInfo
+from app.nutritionix.models.ingredient_model import Ingredient, NutritionInfo
 
 load_dotenv()
 

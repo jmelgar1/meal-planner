@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routes import ingredient
+from app.nutritionix.routes import ingredient
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
