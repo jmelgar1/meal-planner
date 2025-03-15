@@ -1,21 +1,24 @@
-from fastapi import APIRouter, HTTPException, Query
 from typing import List
-from app.spoonacular.services.spoonacular_service import SpoonacularService
-from app.spoonacular.models.recipe_model import Recipe
 
-router = APIRouter()
+from fastapi import APIRouter, HTTPException, Query
+from app.spoonacular.models.recipe_model import Recipe
+from app.spoonacular.services.spoonacular_service import get_recipes_by_ingredients
+
+router = APIRouter(
+    prefix="/api/recipes",
+    tags=["Recipes"]
+)
 
 @router.get(
-    "/api/recipes",
+    "",
     response_model=List[Recipe],
     summary="Get Recipes by Ingredients",
     description="Find recipes that use specified ingredients",
-    tags=["Recipes"]
 )
 async def get_recipes(
     ingredients: str = Query(
         ...,
-        example="apples,flour,sugar",
+        example="chicken,rice",
         description="Comma-separated list of ingredients"
     ),
     number: int = Query(
@@ -27,16 +30,11 @@ async def get_recipes(
 ):
     """
     Example request:
-    /api/recipes?ingredients=apples,flour&number=3
+    /api/recipes?ingredients=chicken,rice&number=3
     """
     try:
-        service = SpoonacularService()
-        ingredients_list = [i.strip() for i in ingredients.split(",")]
-        return await service.get_recipes_by_ingredients(ingredients_list, number)
-    except HTTPException as he:
-        raise he
+        return await get_recipes_by_ingredients(ingredients, number)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Failed to fetch recipes: {str(e)}"
-        )
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")

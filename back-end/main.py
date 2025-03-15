@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.spoonacular.routes import recipe
 from app.nutritionix.routes import ingredient
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,6 +15,7 @@ app.add_middleware(
 
 # Register routes
 app.include_router(ingredient.router)
+app.include_router(recipe.router)
 
 @app.get("/", tags=["Root"])
 def root():

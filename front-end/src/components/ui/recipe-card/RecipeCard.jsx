@@ -1,4 +1,3 @@
-// components/MealCard/MealCard.jsx
 import React from 'react';
 import styles from './RecipeCard.module.css';
 
@@ -11,7 +10,7 @@ function RecipeCard({ recipe }) {
                     alt={recipe.title}
                     className={styles.recipeImage}
                     onError={(e) => {
-                        e.target.src = '/placeholder-food.jpg'; // Fallback image
+                        e.target.src = '/placeholder-food.jpg';
                     }}
                 />
             </div>
