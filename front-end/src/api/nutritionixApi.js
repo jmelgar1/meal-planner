@@ -1,9 +1,7 @@
-import { debounce } from 'lodash';
-
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 export const nutritionixApi = {
-    searchIngredients: debounce(async (query) => {
+    searchIngredients: async (query) => {
         try {
             const response = await fetch(
                 `${API_BASE}/api/foods/nutrition?query=${encodeURIComponent(query)}`
@@ -18,5 +16,5 @@ export const nutritionixApi = {
         } catch (error) {
             throw new Error(`Nutritionix API Error: ${error.message}`);
         }
-    }, 2000)
+    }
 };

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { debounce } from 'lodash';
 import { nutritionixApi } from '../api/nutritionixApi';
 
 export const useIngredients = () => {
@@ -8,22 +9,39 @@ export const useIngredients = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        if (input.trim()) {
-            setIsLoading(true);
-            setError(null);
+    // Create a debounced search function
+    const debouncedSearch = useCallback(
+        debounce(async (query) => {
+            if (!query.trim()) {
+                setFilteredIngredients([]);
+                return;
+            }
 
-            nutritionixApi.searchIngredients(input)
-                .then(data => setFilteredIngredients([data]))
-                .catch(err => {
-                    setError(err.message);
-                    setFilteredIngredients([]);
-                })
-                .finally(() => setIsLoading(false));
-        } else {
-            setFilteredIngredients([]);
-        }
-    }, [input]);
+            try {
+                setIsLoading(true);
+                setError(null);
+
+                const result = await nutritionixApi.searchIngredients(query);
+                setFilteredIngredients([result]);
+            } catch (err) {
+                setError(err.message);
+                setFilteredIngredients([]);
+            } finally {
+                setIsLoading(false);
+            }
+        }, 2000), // 2000ms = 2 seconds
+        [] // Empty dependency array ensures this is created only once
+    );
+
+    useEffect(() => {
+        // Cancel any pending debounce on unmount
+        return () => debouncedSearch.cancel();
+    }, [debouncedSearch]);
+
+    useEffect(() => {
+        // Trigger debounced search when input changes
+        debouncedSearch(input);
+    }, [input, debouncedSearch]);
 
     const addIngredient = (ingredient) => {
         if (!selectedIngredients.some(item =>

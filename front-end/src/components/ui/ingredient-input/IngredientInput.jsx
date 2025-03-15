@@ -13,7 +13,6 @@ function IngredientInput({
                          }) {
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Search is handled by the debounced API call in useIngredients
     };
 
     return (
@@ -26,25 +25,23 @@ function IngredientInput({
                     placeholder="Search ingredients (e.g. '200g chicken breast')"
                     className={styles.searchInput}
                     aria-label="Search ingredients"
+                    disabled={isLoading}
                 />
             </form>
 
             <div className={styles.resultsContainer}>
-                {/* Loading State */}
                 {isLoading && (
                     <div className={styles.loadingState}>
                         ⏳ Searching nutrition data...
                     </div>
                 )}
 
-                {/* Error State */}
                 {error && (
                     <div className={styles.errorState}>
                         ⚠️ Error: {error}
                     </div>
                 )}
 
-                {/* Results List */}
                 <div className={styles.resultsGrid}>
                     {filteredIngredients.map(ingredient => (
                         <IngredientCard
@@ -59,7 +56,6 @@ function IngredientInput({
                     ))}
                 </div>
 
-                {/* Empty State */}
                 {!isLoading && !error && filteredIngredients.length === 0 && input.trim() && (
                     <div className={styles.emptyState}>
                         🍴 No results found for "{input}"
