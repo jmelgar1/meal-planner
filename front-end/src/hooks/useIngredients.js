@@ -21,16 +21,16 @@ export const useIngredients = () => {
                 setIsLoading(true);
                 setError(null);
 
-                const result = await nutritionixApi.searchIngredients(query);
-                setFilteredIngredients([result]);
+                const results = await nutritionixApi.searchIngredients(query);
+                setFilteredIngredients(results);
             } catch (err) {
                 setError(err.message);
                 setFilteredIngredients([]);
             } finally {
                 setIsLoading(false);
             }
-        }, 2000), // 2000ms = 2 seconds
-        [] // Empty dependency array ensures this is created only once
+        }, 500), // reduced debounce time to 500ms for better UX
+        []
     );
 
     useEffect(() => {

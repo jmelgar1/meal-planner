@@ -4,7 +4,7 @@ export const nutritionixApi = {
     searchIngredients: async (query) => {
         try {
             const response = await fetch(
-                `${API_BASE}/api/foods/nutrition?query=${encodeURIComponent(query)}`
+                `${API_BASE}/api/foods/search?search_term=${encodeURIComponent(query)}`
             );
 
             if (!response.ok) {
