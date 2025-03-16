@@ -21,10 +21,12 @@ const SelectedIngredientsPanel = ({
         >
             {recipesLoading ? 'Generating...' : 'Find Recipes!'}
         </Button>
-        <SelectedIngredients
-            selectedIngredients={selectedIngredients}
-            removeIngredient={removeIngredient}
-        />
+        <div className={styles.scrollContainer}>
+            <SelectedIngredients
+                selectedIngredients={selectedIngredients}
+                removeIngredient={removeIngredient}
+            />
+        </div>
     </div>
 );
 

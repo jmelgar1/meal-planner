@@ -30,7 +30,6 @@ function IngredientInput({
             </form>
 
             <div className={styles.resultsContainer}>
-                {/* Loading State */}
                 {isLoading && (
                     <div className={styles.loadingState}>
                         <div className={styles.spinner} />
@@ -38,7 +37,6 @@ function IngredientInput({
                     </div>
                 )}
 
-                {/* Error State */}
                 {error && (
                     <div className={styles.errorState}>
                         <div className={styles.errorIcon}>⚠️</div>
@@ -48,9 +46,8 @@ function IngredientInput({
                     </div>
                 )}
 
-                {/* Results Grid */}
                 {!isLoading && !error && (
-                    <>
+                    <div className={styles.scrollableContent}>
                         <div className={styles.resultsGrid}>
                             {filteredIngredients.map(ingredient => (
                                 <IngredientCard
@@ -65,7 +62,6 @@ function IngredientInput({
                             ))}
                         </div>
 
-                        {/* Empty State */}
                         {filteredIngredients.length === 0 && input.trim() && (
                             <div className={styles.emptyState}>
                                 <div className={styles.emptyIcon}>🍴</div>
@@ -75,7 +71,7 @@ function IngredientInput({
                                 </small>
                             </div>
                         )}
-                    </>
+                    </div>
                 )}
             </div>
         </div>
