@@ -1,0 +1,14 @@
+/* RecipeSuggestionsPanel.module.css */
+.recipePanel {
+    background: linear-gradient(145deg, var(--light) 0%, white 100%);
+    border: 2px dashed var(--secondary);
+    border-radius: var(--radius);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow);
+}
+
+.title[data-icon="recipes"]::before {
+    content: '🥗';
+    font-size: 1.2em;
+    margin-right: var(--spacing-sm);
+}

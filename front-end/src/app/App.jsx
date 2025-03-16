@@ -1,14 +1,12 @@
 import React from 'react';
 import { useIngredients } from '../hooks/useIngredients';
 import { useRecipes } from '../hooks/useRecipes';
-import IngredientInput from '../components/ui/ingredient-input/IngredientInput';
-import SelectedIngredients from '../components/ui/selected-ingredients/SelectedIngredients';
-import RecipeCard from '../components/ui/recipe-card/RecipeCard';
-import Button from '../components/ui/button/Button';
+import SearchIngredientsPanel from '../components/ui/panels/search-ingredients-panel/SearchIngredientsPanel';
+import SelectedIngredientsPanel from '../components/ui/panels/selected-ingredients-panel/SelectedIngredientsPanel';
+import RecipeSuggestionsPanel from '../components/ui/panels/recipe-suggestions-panel/RecipeSuggestionsPanel';
 import styles from './App.module.css';
 
 function App() {
-    // Ingredients hook for search/selection
     const {
         input,
         setInput,
@@ -20,7 +18,6 @@ function App() {
         removeIngredient
     } = useIngredients();
 
-    // Recipes hook for meal generation
     const {
         recipes,
         isLoading: recipesLoading,
@@ -34,14 +31,18 @@ function App() {
         await getRecipes(ingredients);
     };
 
+    const exactMatchRecipes = recipes.filter(recipe =>
+        recipe.missedIngredients.length === 0
+    );
+
+    const missingIngredientsRecipes = recipes.filter(recipe =>
+        recipe.missedIngredients.length > 0
+    );
+
     return (
         <div className={styles.layout}>
-            {/* Search Ingredients Panel */}
-            <div className={styles.panel}>
-                <h2 className={styles.title} data-icon="search">
-                    Search Ingredients
-                </h2>
-                <IngredientInput
+            <div className={styles.leftPanels}>
+                <SearchIngredientsPanel
                     input={input}
                     setInput={setInput}
                     filteredIngredients={filteredIngredients}
@@ -50,58 +51,22 @@ function App() {
                     isLoading={ingredientsLoading}
                     error={ingredientsError}
                 />
-            </div>
 
-            {/* Selected Ingredients Panel */}
-            <div className={styles.panel}>
-                <h2 className={styles.title} data-icon="selected">
-                    Selected Items
-                </h2>
-                <SelectedIngredients
+                <SelectedIngredientsPanel
                     selectedIngredients={selectedIngredients}
                     removeIngredient={removeIngredient}
+                    handleCreateRecipes={handleCreateRecipes}
+                    recipesLoading={recipesLoading}
                 />
-                <Button
-                    variant="primary"
-                    onClick={handleCreateRecipes}
-                    disabled={selectedIngredients.length === 0}
-                    className={styles.fullWidthButton}
-                >
-                    {recipesLoading ? 'Generating...' : 'Find Recipes!'}
-                </Button>
             </div>
 
-            {/* Recipe Suggestions Panel */}
-            <div className={styles.recipePanel}>
-                <h2 className={styles.title} data-icon="recipes">
-                    Recipe Suggestions
-                </h2>
-
-                <div className={styles.recipeContent}>
-                    {recipesLoading ? (
-                        <div className={styles.loadingState}>
-                            <span>✨ Cooking up ideas...</span>
-                        </div>
-                    ) : recipesError ? (
-                        <div className={styles.errorState}>
-                            ⚠️ {recipesError}
-                        </div>
-                    ) : recipes.length > 0 ? (
-                        <div className={styles.recipeGrid}>
-                            {recipes.map(recipe => (
-                                <RecipeCard
-                                    key={recipe.id}
-                                    recipe={recipe}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className={styles.emptyState}>
-                            🧑🍳 Select ingredients and click "Find Recipes" to get started!
-                        </div>
-                    )}
-                </div>
-            </div>
+            <RecipeSuggestionsPanel
+                exactMatchRecipes={exactMatchRecipes}
+                missingIngredientsRecipes={missingIngredientsRecipes}
+                recipesLoading={recipesLoading}
+                recipesError={recipesError}
+                hasRecipes={recipes.length > 0}
+            />
         </div>
     );
 }

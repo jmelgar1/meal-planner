@@ -1,0 +1,12 @@
+.panel {
+    background: white;
+    border-radius: var(--radius);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow);
+}
+
+.title[data-icon="search"]::before {
+    content: '🔍';
+    font-size: 1.2em;
+    margin-right: var(--spacing-sm);
+}
