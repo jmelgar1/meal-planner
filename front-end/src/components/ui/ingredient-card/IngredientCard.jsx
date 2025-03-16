@@ -9,6 +9,9 @@ function IngredientCard({ ingredient, onSelect, isSelected, className }) {
     return (
         <div className={`${styles.ingredientCard} ${isSelected ? styles.selected : ''} ${className || ''}`}
              onClick={() => onSelect(ingredient)}>
+
+            <span className={styles.foodIcon}>{foodIcon}</span>
+
             <div className={styles.imagePlaceholder}>
                 {ingredient.image && (
                     <img src={ingredient.image}
@@ -20,12 +23,10 @@ function IngredientCard({ ingredient, onSelect, isSelected, className }) {
             <div className={styles.details}>
                 <div className={styles.label}>
                     <h2>{ingredient.food_name}</h2>
-                    <span className={styles.foodIcon}>{foodIcon}</span>
                 </div>
                 <div className={styles.nutrition}>
                     <p>Calories: {ingredient.nutrition?.calories || 'N/A'}</p>
                     <p>Serving: {ingredient.serving_qty} {ingredient.serving_unit}</p>
-                    <p>Weight: {ingredient.serving_weight_grams}g</p>
                 </div>
             </div>
 

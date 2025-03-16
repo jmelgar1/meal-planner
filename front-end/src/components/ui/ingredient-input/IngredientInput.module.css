@@ -25,3 +25,9 @@
 .searchInput:hover {
     border-color: #9333ea;
 }
+
+.resultsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}

@@ -13,10 +13,6 @@ const SelectedIngredientsPanel = ({
         <h2 className={styles.title} data-icon="selected">
             Selected Items
         </h2>
-        <SelectedIngredients
-            selectedIngredients={selectedIngredients}
-            removeIngredient={removeIngredient}
-        />
         <Button
             variant="primary"
             onClick={handleCreateRecipes}
@@ -25,6 +21,10 @@ const SelectedIngredientsPanel = ({
         >
             {recipesLoading ? 'Generating...' : 'Find Recipes!'}
         </Button>
+        <SelectedIngredients
+            selectedIngredients={selectedIngredients}
+            removeIngredient={removeIngredient}
+        />
     </div>
 );
 
