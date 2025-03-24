@@ -5,10 +5,10 @@ import styles from './SelectedIngredients.module.css';
 
 function SelectedIngredients({ selectedIngredients, removeIngredient }) {
     return (
-        <div className="w-1/3">
+        <div className={styles.container}>
             <h2 className="font-bold mb-2">Selected Ingredients</h2>
 
-            <div className="mt-2 grid gap-2">
+            <div className={styles.ingredientsList}>
                 {Array.isArray(selectedIngredients) && selectedIngredients.length > 0 ? (
                     selectedIngredients.map(ingredient => (
                         <IngredientCard

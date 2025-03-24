@@ -1,9 +1,20 @@
 /* SelectedIngredients.module.css */
+.container {
+    width: 100%;
+}
+
+.ingredientsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* This adds space between ingredients */
+}
+
 .selectedCard {
     background-color: #22c55e !important; /* Vibrant green */
     border: 2px solid #15803d !important; /* Darker green border */
     color: white !important;
     box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2) !important;
+    margin-bottom: 16px; /* Additional spacing between cards */
 }
 
 .selectedCard:hover {

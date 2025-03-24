@@ -1,0 +1,22 @@
+.title {
+    font-family: 'Poppins', sans-serif;  /* You might need to import this font */
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2D3748;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.title::before {
+    content: '🍳';  /* You can change this to any food emoji you prefer */
+    font-size: 2rem;
+}
+
+.title span {
+    background: linear-gradient(120deg, #FF6B6B, #4ECDC4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+} 

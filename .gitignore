@@ -10,6 +10,7 @@ back-end/.venv
 back-end/.env
 back-end/__pycache__
 back-end/routes/__pycache__
+__pycache__
 *.log
 
 #Root

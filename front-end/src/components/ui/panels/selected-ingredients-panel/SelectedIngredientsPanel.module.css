@@ -20,6 +20,15 @@
     margin: var(--spacing-md) 0;
 }
 
+.scrollContainer {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .panel > :last-child {
     flex: 1;
     min-height: 0;
